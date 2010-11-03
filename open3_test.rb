@@ -14,8 +14,7 @@ class Open3Test < Test::Unit::TestCase
     stdin, stdout, stderr = popen3('pwd')
     a = stdout.readlines()
     assert_instance_of(Array, a,                       'expecting stdout.readlines to return an Array')
-    assert_equal("/cygdrive/d/BACKUP~1/SMG\n", a.to_s, 'using readlines to squeeze stdout into a string, with    braces')
-    assert_equal "/cygdrive/d/BACKUP~1/SMG\n", a.to_s, 'using readlines to squeeze stdout into a string, without braces'
+    assert_equal("/home/egon/mount_d/MAX DATEIEN/SMG/learn\n", a[0], 'using readlines to squeeze stdout into a string')
   end
   
   def test_stderr_cd_into_the_nirvana
@@ -40,7 +39,7 @@ class Open3Test < Test::Unit::TestCase
     #=end
     assert(e.to_s =~ /No such file or directory/,     'match of the most important part of the error message')
   end
-   
+=begin   
   def test_stdin_cd_back_and_forth
     assert_equal('ToDo', 'not yet done', 'STDIN test: "cd ..", then "cd -"')
   end
@@ -48,5 +47,5 @@ class Open3Test < Test::Unit::TestCase
   def test_ToDos
     assert_equal('ToDo','not yet done','more tests on STDIN, STDOUT and STDERR')
   end
-  
+=end
 end
